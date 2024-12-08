@@ -7,7 +7,7 @@ mp_pose = mp.solutions.pose
 pose = mp_pose.Pose()
 
 # Ruta de la imagen
-ruta_imagen = "./proyecto/imagen1.png"  # Cambia esto por la ruta de tu imagen
+ruta_imagen = "./proyecto/imagen1.png"
 imagen = cv.imread(ruta_imagen)
 imagen_rgb = cv.cvtColor(imagen, cv.COLOR_BGR2RGB)
 resultados = pose.process(imagen_rgb)
