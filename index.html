@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aplicación para Prótesis</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Aplicación para Prótesis</h1>
+        <p>Este formulario es para las personas que quieran solicitar y necesiten una prótesis.</p>
+        <form>
+            <div class="form-group">
+                <label for="nombre">Nombre Completo del Solicitante:</label>
+                <input type="text" id="nombre" name="nombre" required>
+            </div>
+
+  
+            <div class="form-group inline-group">
+                <label>Lado de la prótesis:</label>
+                <label><input type="radio" name="lado" value="izquierda" required> Izquierda</label>
+                <label><input type="radio" name="lado" value="derecha"> Derecha</label>
+            </div>
+
+            <div class="form-group">
+                <label for="foto">Foto de la amputación:</label>
+                <input type="file" id="foto" name="foto" accept="image/*">
+            </div>
+
+            
+            <div class="form-group">
+                <label for="fecha-nacimiento">Fecha de Nacimiento:</label>
+                <input type="date" id="fecha-nacimiento" name="fecha-nacimiento" required>
+            </div>
+
+            <div class="form-group inline-group">
+                <label>Sexo:</label>
+                <label><input type="radio" name="sexo" value="hombre" required> Hombre</label>
+                <label><input type="radio" name="sexo" value="mujer"> Mujer</label>
+            </div>
+
+            <div class="form-group">
+                <label for="direccion">Dirección de Domicilio:</label>
+                <textarea id="direccion" name="direccion" rows="3"></textarea>
+            </div>
+
+
+            <button type="submit" class="button">Click para enviar</button>
+        </form>
+    </div>
+</body>
+</html>
