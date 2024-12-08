@@ -24,30 +24,61 @@ while True:
         except IndexError:
             hombro_derecho = codo_derecho = muñeca_derecha = None
 
-        # Definir coordenadas en píxeles (si los puntos existen)
+        # Obtener puntos clave del brazo izquierdo
+        try:
+            hombro_izquierdo = resultados.pose_landmarks.landmark[mp_pose.PoseLandmark.LEFT_SHOULDER]
+            codo_izquierdo = resultados.pose_landmarks.landmark[mp_pose.PoseLandmark.LEFT_ELBOW]
+            muñeca_izquierda = resultados.pose_landmarks.landmark[mp_pose.PoseLandmark.LEFT_WRIST]
+        except IndexError:
+            hombro_izquierdo = codo_izquierdo = muñeca_izquierda = None
+
+        # Definir coordenadas en píxeles para el brazo derecho
         puntos_derecho = {
             "hombro": (int(hombro_derecho.x * ancho), int(hombro_derecho.y * altura)) if hombro_derecho else None,
             "codo": (int(codo_derecho.x * ancho), int(codo_derecho.y * altura)) if codo_derecho else None,
             "muñeca": (int(muñeca_derecha.x * ancho), int(muñeca_derecha.y * altura)) if muñeca_derecha else None,
         }
 
-        # Detectar amputaciones
+        # Definir coordenadas en píxeles para el brazo izquierdo
+        puntos_izquierdo = {
+            "hombro": (int(hombro_izquierdo.x * ancho), int(hombro_izquierdo.y * altura)) if hombro_izquierdo else None,
+            "codo": (int(codo_izquierdo.x * ancho), int(codo_izquierdo.y * altura)) if codo_izquierdo else None,
+            "muñeca": (int(muñeca_izquierda.x * ancho), int(muñeca_izquierda.y * altura)) if muñeca_izquierda else None,
+        }
+
+        # Detectar amputaciones para el brazo derecho
         if puntos_derecho["hombro"] and not puntos_derecho["codo"]:
-            texto = "Amputación por encima del codo"
+            texto_derecho = "Amputación por encima del codo (derecho)"
         elif puntos_derecho["codo"] and not puntos_derecho["muñeca"]:
-            texto = "Amputación por debajo del codo"
+            texto_derecho = "Amputación por debajo del codo (derecho)"
         elif puntos_derecho["hombro"] and puntos_derecho["codo"] and not puntos_derecho["muñeca"]:
-            texto = "Amputación en la muñeca"
+            texto_derecho = "Amputación en la muñeca (derecho)"
         else:
-            texto = "Brazo completo detectado"
+            texto_derecho = "Brazo derecho completo detectado"
 
-        # Mostrar texto en pantalla
-        cv.putText(captura, texto, (10, 50), cv.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2, cv.LINE_AA)
+        # Detectar amputaciones para el brazo izquierdo
+        if puntos_izquierdo["hombro"] and not puntos_izquierdo["codo"]:
+            texto_izquierdo = "Amputación por encima del codo (izquierdo)"
+        elif puntos_izquierdo["codo"] and not puntos_izquierdo["muñeca"]:
+            texto_izquierdo = "Amputación por debajo del codo (izquierdo)"
+        elif puntos_izquierdo["hombro"] and puntos_izquierdo["codo"] and not puntos_izquierdo["muñeca"]:
+            texto_izquierdo = "Amputación en la muñeca (izquierdo)"
+        else:
+            texto_izquierdo = "Brazo izquierdo completo detectado"
 
-        # Dibujar los puntos clave detectados
+        # Mostrar texto en pantalla para ambos brazos
+        cv.putText(captura, texto_derecho, (10, 50), cv.FONT_HERSHEY_SIMPLEX, 0.7, (0, 255, 0), 2, cv.LINE_AA)
+        cv.putText(captura, texto_izquierdo, (10, 80), cv.FONT_HERSHEY_SIMPLEX, 0.7, (0, 255, 0), 2, cv.LINE_AA)
+
+        # Dibujar los puntos clave detectados para el brazo derecho
         for nombre, punto in puntos_derecho.items():
             if punto:
                 cv.circle(captura, punto, 5, (0, 255, 0), -1)
+
+        # Dibujar los puntos clave detectados para el brazo izquierdo
+        for nombre, punto in puntos_izquierdo.items():
+            if punto:
+                cv.circle(captura, punto, 5, (255, 0, 0), -1)
 
     # Mostrar la captura en tiempo real
     cv.imshow("Reconocimiento de amputaciones", captura)
