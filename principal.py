@@ -70,12 +70,22 @@ while True:
         cv.putText(captura, texto_derecho, (10, 50), cv.FONT_HERSHEY_SIMPLEX, 0.7, (0, 255, 0), 2, cv.LINE_AA)
         cv.putText(captura, texto_izquierdo, (10, 80), cv.FONT_HERSHEY_SIMPLEX, 0.7, (0, 255, 0), 2, cv.LINE_AA)
 
-        # Dibujar los puntos clave detectados para el brazo derecho
+        # Dibujar las líneas y los puntos clave para el brazo derecho
+        if puntos_derecho["hombro"] and puntos_derecho["codo"]:
+            cv.line(captura, puntos_derecho["hombro"], puntos_derecho["codo"], (0, 255, 255), 2)
+        if puntos_derecho["codo"] and puntos_derecho["muñeca"]:
+            cv.line(captura, puntos_derecho["codo"], puntos_derecho["muñeca"], (0, 255, 255), 2)
+
         for nombre, punto in puntos_derecho.items():
             if punto:
                 cv.circle(captura, punto, 5, (0, 255, 0), -1)
 
-        # Dibujar los puntos clave detectados para el brazo izquierdo
+        # Dibujar las líneas y los puntos clave para el brazo izquierdo
+        if puntos_izquierdo["hombro"] and puntos_izquierdo["codo"]:
+            cv.line(captura, puntos_izquierdo["hombro"], puntos_izquierdo["codo"], (255, 0, 255), 2)
+        if puntos_izquierdo["codo"] and puntos_izquierdo["muñeca"]:
+            cv.line(captura, puntos_izquierdo["codo"], puntos_izquierdo["muñeca"], (255, 0, 255), 2)
+
         for nombre, punto in puntos_izquierdo.items():
             if punto:
                 cv.circle(captura, punto, 5, (255, 0, 0), -1)
