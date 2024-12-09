@@ -44,3 +44,4 @@ Notas Adicionales
 * Asegúrate de que la cámara esté conectada y no esté siendo utilizada por otra aplicación.
 * Resultados Visuales:
 * Los puntos clave y las clasificaciones se dibujan directamente sobre las imágenes o video en tiempo real.
+* En la carpeta modelos se encuentra los modelos entranados para poder hacer predicciones de tipo de protesis y en el archivo prediccionProtesis.py esta la manera de usarlo
