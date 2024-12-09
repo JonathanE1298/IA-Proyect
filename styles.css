@@ -1,98 +1,76 @@
-/* styles.css */
+/* CSS Styles for Prosthesis Recommendation */
 body {
     font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
     margin: 0;
     padding: 0;
-    background-color: #e6f5f7;
-}
-
-.container {
-    max-width: 800px; /* Limita el ancho máximo del formulario */
-    margin: 20px auto; /* Centra el formulario horizontalmente */
+  }
+  
+  .container {
+    max-width: 600px;
+    margin: 50px auto;
     padding: 20px;
-    background: white;
+    background-color: #fff;
     border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-}
-
-h1 {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #444;
     text-align: center;
-    color: #046b72;
-}
-
-p {
-    text-align: center;
-    font-size: 1rem;
-    color: #333;
-}
-
-.form-group {
-    margin-bottom: 15px;
-}
-
-label {
-    display: block;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  label {
     font-weight: bold;
     margin-bottom: 5px;
-    color: #046b72;
-}
-
-input[type="text"],
-input[type="date"],
-input[type="file"],
-textarea,
-select {
-    width: 100%; /* Ajusta el ancho del campo al contenedor */
+  }
+  
+  input[type="text"], input[type="file"], select, button {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    font-size: 1rem;
-    box-sizing: border-box;
-}
-
-textarea {
-    resize: none; /* Evita que se redimensione */
-}
-
-.inline-group {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    align-items: center;
-}
-
-.inline-group label {
-    margin: 0;
-    font-weight: normal;
-}
-
-button {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    font-size: 1rem;
+    font-size: 16px;
+  }
+  
+  input[type="file"] {
+    font-size: 14px;
+  }
+  
+  button {
+    background-color: #007BFF;
     color: white;
-    background-color: #046b72;
-    border: none;
-    border-radius: 4px;
     cursor: pointer;
+    font-size: 16px;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+  .recommendation {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #006400;
     text-align: center;
-}
-
-button:hover {
-    background-color: #034e54;
-}
-
-@media (max-width: 600px) {
-    .container {
-        padding: 15px;
-    }
-
-    h1 {
-        font-size: 1.5rem;
-    }
-
-    button {
-        font-size: 0.9rem;
-    }
-}
+  }
+  
+  input[type="text"]:focus, select:focus, button:focus {
+    outline: none;
+    border-color: #007BFF;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  }
