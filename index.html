@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -8,40 +9,50 @@
 <body>
   <div class="container">
     <h1>Recomendador de Prótesis</h1>
-    <form id="prosthesisForm">
+    <form id="prosthesisForm" action="/upload" method="POST" enctype="multipart/form-data">
         <div class="form-group">
             <label for="nombre">Nombre Completo del Solicitante:</label>
             <input type="text" id="nombre" name="nombre" required>
         </div>
 
         <div class="form-group">
-            <label for="foto">Foto de la amputación:</label>
-            <input type="file" id="foto" name="foto" accept="image/*">
+            <label for="imagen">Foto de la amputación:</label>
+            <input type="file" id="imagen" name="imagen" accept="image/*" required>
         </div>
 
-      <label for="side">Lado del Brazo:</label>
-      <select id="side" name="side" required>
-        <option value="">Seleccione...</option>
-        <option value="Izquierda">Izquierda</option>
-        <option value="Derecha">Derecha</option>
-      </select>
+        <div class="form-group">
+          <label for="side">Lado del Brazo:</label>
+          <select id="side" name="lado" required>
+            <option value="">Seleccione...</option>
+            <option value="Izquierda">Izquierda</option>
+            <option value="Derecha">Derecha</option>
+          </select>
+        </div>
 
-      <label for="amputation">Tipo de Amputación:</label>
-      <select id="amputation" name="amputation" required>
-        <option value="">Seleccione...</option>
-        <option value="Abajo del codo">Abajo del codo</option>
-        <option value="Arriba del codo">Arriba del codo</option>
-        <option value="Mano">Mano</option>
-        <option value="Congénita (de nacimiento)">Congénita (de nacimiento)</option>
-      </select>
+        <div class="form-group">
+          <label for="amputation">Tipo de Amputación:</label>
+          <select id="amputation" name="amputacion" required>
+            <option value="">Seleccione...</option>
+            <option value="Abajo del codo">Abajo del codo</option>
+            <option value="Arriba del codo">Arriba del codo</option>
+            <option value="Mano">Mano</option>
+            <option value="Congénita (de nacimiento)">Congénita (de nacimiento)</option>
+          </select>
+        </div>
 
-      <button type="submit">Obtener Recomendación</button>
+        <button type="submit">Subir Imagen y Analizar</button>
     </form>
 
-    <div id="recommendation" class="recommendation"></div>
+    {% if mensaje %}
+    <div class="results">
+      <h3>Resultados del Análisis</h3>
+      <p><strong>Detectado:</strong></p>
+      <p><strong>Lado:</strong> {{ lado_detectado }}</p>
+      <p><strong>Amputación:</strong> {{ amputacion_detectada }}</p>
+      <p><strong>Recomendación:</strong> {{ recomendacion }}</p>
+      <a href="{{ ruta_procesada }}" target="_blank">Ver Imagen Procesada</a>
+    </div>
+    {% endif %}
   </div>
-
-  <script src="script.js"></script>
-
 </body>
 </html>
